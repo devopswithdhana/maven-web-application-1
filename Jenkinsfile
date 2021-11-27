@@ -1,8 +1,9 @@
 node
 {
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([githubPush()])])
- def mavenHome = tool name: "Maven-3.6.3"
 
+ def mavenHome = tool name: "Maven-3.6.3"
+ 
 stage('Checkout code')
 {
 git branch: 'development', credentialsId: 'dd63d798-7137-4832-9d56-f13204e41a6f', url: 'https://github.com/devopswithdhana/maven-web-application-1.git'
