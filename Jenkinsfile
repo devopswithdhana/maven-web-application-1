@@ -16,6 +16,10 @@ stage('Execute sonaQube report')
 {
 sh "${mavenHome}/bin/mvn sonar:sonar"
 }
+stage('Upload Artifactory to nexus')
+{
+sh "${mavenHome}/bin/mvn clean deploy"
+}
 stage('Deploy to Tomcat')
 {
 sshagent(['My_tom']) 
