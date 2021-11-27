@@ -20,13 +20,13 @@ stage('Upload Artifactory to nexus')
 {
 sh "${mavenHome}/bin/mvn clean deploy"
 }
+ ?*
 stage('Deploy to Tomcat')
 {
 sshagent(['My_tom']) 
 {
   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.232.5.184:/opt/apache-tomcat-9.0.55/webapps/"
 }
-/*
 stage('Send Email Notification')
 {
 mail bcc: 'makdhana04@gmail.com', body: '''Build  done
