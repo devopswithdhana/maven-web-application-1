@@ -16,11 +16,12 @@ stage('Execute sonaQube report')
 {
 sh "${mavenHome}/bin/mvn sonar:sonar"
 }
+/*
 stage('Upload Artifactory to nexus')
 {
 sh "${mavenHome}/bin/mvn clean deploy"
 }
- ?*
+*/
 stage('Deploy to Tomcat')
 {
 sshagent(['My_tom']) 
@@ -34,6 +35,5 @@ mail bcc: 'makdhana04@gmail.com', body: '''Build  done
 Regards,
 Dhanasekar''', cc: 'makdhana04@gmail.com', from: '', replyTo: '', subject: 'Build over', to: 'makdhana04@gmail.com'
 }
-*/
 }
 }
