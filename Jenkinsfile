@@ -2,7 +2,7 @@ node('Slave1')
 {
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([githubPush()])])
 
- def mavenHome = tool name: "Maven-3.6.3"
+def mavenHome = tool name: "Maven-3.6.3"
  
 stage('Checkout code')
 {
@@ -26,6 +26,7 @@ sshagent(['My_tom'])
 {
   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.232.5.184:/opt/apache-tomcat-9.0.55/webapps/"
 }
+/*
 stage('Send Email Notification')
 {
 mail bcc: 'makdhana04@gmail.com', body: '''Build  done
@@ -33,5 +34,6 @@ mail bcc: 'makdhana04@gmail.com', body: '''Build  done
 Regards,
 Dhanasekar''', cc: 'makdhana04@gmail.com', from: '', replyTo: '', subject: 'Build over', to: 'makdhana04@gmail.com'
 }
+*/
 }
 }
